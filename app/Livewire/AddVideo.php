@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Actions\YouTube\ParseVideoId;
+use App\Actions\YouTube\Search\GetVideoRank;
 use App\Actions\YouTube\Videos\GetAllDetails;
 use App\Models\Category;
 use App\Models\Video;
@@ -15,6 +16,9 @@ class AddVideo extends Component
 {
     #[Validate(['required', 'string', 'url', 'active_url'])]
     public string $url = '';
+
+    #[Validate(['nullable', 'string', 'min:2', 'max:255'])]
+    public string $keyword = '';
 
     public Category $category;
 
@@ -49,6 +53,14 @@ class AddVideo extends Component
          * Narrow down to the video details
          */
         $details = $response['items'][0];
+
+        /**
+         * If a keyword was provided, fetch the current rank for the video
+         */
+        if (!empty($this->keyword)) {
+            $response = GetVideoRank::execute($video_id, $this->keyword);
+            dd($response);
+        }
 
         /**
          * Create the video

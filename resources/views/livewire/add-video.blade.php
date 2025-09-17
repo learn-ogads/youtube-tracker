@@ -5,17 +5,28 @@
         </div>
         <div class="px-3 py-4">
             <form wire:submit.prevent="save">
-                <div class="flex items-center w-full">
-                    <input type="url" wire:model="url" class="w-full bg-stone-900 rounded-l py-2 px-3 text-stone-400" placeholder="Provide the YouTube video URL...">
-                    <button type="submit" class="px-8 py-2 bg-red-500 hover:bg-red-700 transition-all duration-200 rounded-r font-semibold text-white cursor-pointer disabled:pointer-not-allowed disabled:opacity-60">
-                        Save
-                    </button>
+                <div class="mb-3">
+                    <div class="flex items-center w-full">
+                        <input type="url" wire:model="url" class="w-full bg-stone-900 rounded-l py-2 px-3 text-stone-400" placeholder="Provide the YouTube video URL...">
+                        <button type="submit" class="px-8 py-2 bg-red-500 hover:bg-red-700 transition-all duration-200 rounded-r font-semibold text-white cursor-pointer disabled:pointer-not-allowed disabled:opacity-60">
+                            Save
+                        </button>
+                    </div>
+                    @error('url')
+                    <p class="text-xs text-red-500 mt-2">
+                        {{ $message }}
+                    </p>
+                    @enderror
                 </div>
-                @error('url')
-                <p class="text-xs text-red-500 mt-2">
-                    {{ $message }}
-                </p>
-                @enderror
+
+                <div>
+                    <input type="text" wire:model="keyword" class="w-full bg-stone-900 rounded-l py-2 px-3 text-stone-400" placeholder="Provide a keyword to track...">
+                    @error('keyword')
+                    <p class="text-xs text-red-500 mt-2">
+                        {{ $message }}
+                    </p>
+                    @enderror
+                </div>
             </form>
         </div>
     </div>
