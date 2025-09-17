@@ -12,7 +12,8 @@ class VideoRank extends Model
     use HasFactory;
 
     protected $fillable = [
-        'rank'
+        'rank',
+        'video_id'
     ];
 
     public function video(): BelongsTo

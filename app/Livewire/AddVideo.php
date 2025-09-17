@@ -7,6 +7,7 @@ use App\Actions\YouTube\Search\GetVideoRank;
 use App\Actions\YouTube\Videos\GetAllDetails;
 use App\Models\Category;
 use App\Models\Video;
+use App\Models\VideoRank;
 use App\Models\VideoStatistic;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -57,9 +58,9 @@ class AddVideo extends Component
         /**
          * If a keyword was provided, fetch the current rank for the video
          */
+        $video_rank = null;
         if (!empty($this->keyword)) {
-            $response = GetVideoRank::execute($video_id, $this->keyword);
-            dd($response);
+            $video_rank = GetVideoRank::execute($video_id, $this->keyword);
         }
 
         /**
@@ -71,6 +72,7 @@ class AddVideo extends Component
             'url' => $this->url,
             'shortcode' => $video_id,
             'status' => $details['status']['uploadStatus'],
+            'keyword' => $this->keyword,
             'category_id' => $this->category->id,
         ]);
 
@@ -84,6 +86,16 @@ class AddVideo extends Component
             'favorites' => $details['statistics']['favoriteCount'] ?? 0,
             'comments' => $details['statistics']['commentCount'] ?? 0,
         ]);
+
+        /**
+         * If we have a video rank, create it
+         */
+        if (!is_null($video_rank)) {
+            VideoRank::create([
+                'video_id' => $video->id,
+                'rank' => $video_rank,
+            ]);
+        }
 
         return Redirect::route('categories.show', ['category' => $this->category])->with('flash.success', 'Added a video to track successfully');
     }
