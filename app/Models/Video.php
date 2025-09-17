@@ -18,6 +18,7 @@ class Video extends Model
         'url',
         'shortcode',
         'status',
+        'keyword',
         'category_id'
     ];
 

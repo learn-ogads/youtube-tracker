@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('url');
             $table->string('shortcode')->unique();
             $table->string('status');
+            $table->string('keyword')->nullable();
             $table->foreignIdFor(Category::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
