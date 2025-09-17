@@ -41,4 +41,9 @@ class Video extends Model
     {
         return $this->hasMany(VideoRank::class);
     }
+
+    public function mostRecentRank(): ?VideoRank
+    {
+        return $this->ranks()->latest()->first();
+    }
 }
