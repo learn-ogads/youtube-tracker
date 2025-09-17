@@ -35,4 +35,9 @@ class Video extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function ranks(): HasMany
+    {
+        return $this->hasMany(VideoRank::class);
+    }
 }
