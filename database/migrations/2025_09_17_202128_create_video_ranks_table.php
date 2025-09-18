@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('video_ranks', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Video::class)->constrained()->cascadeOnDelete();
-            $table->integer('rank');
+            $table->integer('rank')->nullable();
             $table->timestamps();
         });
     }

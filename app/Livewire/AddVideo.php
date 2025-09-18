@@ -90,12 +90,10 @@ class AddVideo extends Component
         /**
          * If we have a video rank, create it
          */
-        if (!is_null($video_rank)) {
-            VideoRank::create([
-                'video_id' => $video->id,
-                'rank' => $video_rank,
-            ]);
-        }
+        VideoRank::create([
+            'video_id' => $video->id,
+            'rank' => $video_rank,
+        ]);
 
         return Redirect::route('categories.show', ['category' => $this->category])->with('flash.success', 'Added a video to track successfully');
     }
