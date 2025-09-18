@@ -36,7 +36,11 @@
             <div class="text-white font-semibold flex items-center gap-x-2">
                 <x-lucide-line-chart class="w-4 h-4 text-yellow-400" />
                 @if(!is_null($video->mostRecentRank()))
-                    Rank #{{ $video->mostRecentRank()->rank }} for {{ $video->keyword }}
+                    @if($video->mostRecentRank()->rank)
+                        Rank #{{ $video->mostRecentRank()->rank }} for {{ $video->keyword }}
+                    @else
+                        Video is not ranked
+                    @endif
                 @else
                     Not tracking the rank for this video
                 @endif

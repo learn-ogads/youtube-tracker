@@ -24,7 +24,11 @@
         @empty($video->mostRecentRank())
             Unable to find rank
         @else
-            #{{ $video->mostRecentRank()->rank }} for {{ $video->keyword }}
+            @if($video->mostRecentRank()->rank)
+                #{{ $video->mostRecentRank()->rank }} for {{ $video->keyword }}
+            @else
+                Video is not ranked
+            @endif
         @endempty
     </td>
     <td>

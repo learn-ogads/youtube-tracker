@@ -58,7 +58,17 @@
                 <div class="text-white font-semibold flex items-center justify-center gap-x-2 mb-1">
                     <x-lucide-line-chart class="w-5 h-5 text-yellow-400" />
                 </div>
-                <div class="text-white text-lg font-bold">{{ $video->mostRecentRank()->rank }}</div>
+                @empty($video->mostRecentRank())
+                    No rank found
+                @else
+                    @empty($video->mostRecentRank()->rank)
+                        <div class="text-white text-lg font-bold">
+                            Video is not ranked
+                        </div>
+                    @else
+                        <div class="text-white text-lg font-bold">{{ $video->mostRecentRank()->rank }}</div>
+                    @endempty
+                @endempty
                 <div class="text-stone-300 text-sm">Current Rank</div>
             </div>
         </div>
@@ -76,8 +86,9 @@
             </div>
         </div>
 
-        <div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <livewire:video-chart :video="$video" />
+            <livewire:video-ranks-chart :video="$video" />
         </div>
 
         <div class="mt-10">
