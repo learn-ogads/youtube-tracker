@@ -71,12 +71,16 @@
             <livewire:video-chart :video="$video" />
         </div>
 
+        <div class="mt-10">
+            <livewire:video-ranks :video="$video" />
+        </div>
+
         <div class="rounded bg-stone-800 shadow-lg overflow-hidden mt-10">
             <div class="px-6 py-4 border-b border-stone-700">
                 <h3 class="text-white font-semibold text-xl">Recent Stats</h3>
             </div>
 
-            <div class="px-4">
+            <div class="px-4 w-full overflow-x-auto">
                 <table class="w-full">
                     <thead>
                     <tr class="text-red-500 border-b border-stone-700">
