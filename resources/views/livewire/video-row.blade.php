@@ -20,6 +20,17 @@
     <td class="text-yellow-400">
         {{ number_format($video->latestStatistics()->comments) }}
     </td>
+    <td class="text-yellow-400">
+        @empty($video->mostRecentRank())
+            Unable to find rank
+        @else
+            @if($video->mostRecentRank()->rank)
+                #{{ $video->mostRecentRank()->rank }} for {{ $video->keyword }}
+            @else
+                Video is not ranked
+            @endif
+        @endempty
+    </td>
     <td>
         <a href="{{ route('videos.show', ['id' => $video->id]) }}" class="flex items-center justify-center text-white bg-red-500 py-2 rounded font-semibold hover:opacity-60 transition-all duration-200 min-w-[100px]">
             View More

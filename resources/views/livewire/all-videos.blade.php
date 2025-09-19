@@ -28,6 +28,7 @@
                     <th class="text-left pb-3 pr-8">Likes</th>
                     <th class="text-left pb-3 pr-8">Favorites</th>
                     <th class="text-left pb-3 pr-8">Comments</th>
+                    <th class="text-left pb-3 pr-8">Rank</th>
                     <th class="flex justify-end pb-3">
                         <x-lucide-eye class="w-4 h-4" />
                     </th>

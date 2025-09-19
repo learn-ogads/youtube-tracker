@@ -18,6 +18,7 @@ class Video extends Model
         'url',
         'shortcode',
         'status',
+        'keyword',
         'category_id'
     ];
 
@@ -34,5 +35,15 @@ class Video extends Model
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function ranks(): HasMany
+    {
+        return $this->hasMany(VideoRank::class);
+    }
+
+    public function mostRecentRank(): ?VideoRank
+    {
+        return $this->ranks()->latest()->first();
     }
 }
