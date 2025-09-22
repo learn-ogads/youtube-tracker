@@ -14,7 +14,7 @@ class VideoRanks extends Component
     public function mount(Video $video)
     {
         $this->video = $video;
-        $this->ranks = $video->ranks()->get();
+        $this->ranks = $video->ranks()->latest()->get();
     }
 
     public function render()
